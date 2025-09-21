@@ -31,3 +31,14 @@ deste projeto é ajudar os desenvolvedores com o gerenciamento de seus projetos.
 * api/v1/deletar - DELETE, Deleta projeto existente
 * api/v1/user/projetos/{id} - GET, Todos projetos públicos, ou privados se tiver autorização ou apenas algum específico pelo id
 * api/v1/user/projetos? - GET, filtra os projetos, ex: por contribuidores
+
+### Classes
+<br>
+
+* User, Model - Classe de usuário.
+* UserDTO, DTO - Classe de usuário seguindo padrão DTO para garantir a segurança.
+* Projects, Model - Classe de projetos, responsável por representar os projetos reais.
+* ProjectRequest, Model - Classe para fazer requisição de projetos, permite a um cliente pedir a um outro User que aceite seu projeto.
+* ProjectRequestDTO, DTO - Para impedir que o cliente force outro User aceitar projetos sem permissão.
+* Image, Model - Classe para imagens genéricas, podem ser UMLs, imagens de Design, MER, e etc.
+* UserImage, Model - Imagem do usuário para identificação visual do próprio.
