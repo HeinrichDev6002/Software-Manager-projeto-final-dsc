@@ -1,4 +1,6 @@
+/*
 package com.example.software_manager.DTO;
+
 
 import com.example.software_manager.Model.Image;
 import com.example.software_manager.Model.ProjectRequest;
@@ -26,4 +28,8 @@ public class ProjectRequestDTO {
     public ProjectRequestDTO toDTO(ProjectRequest projectRequest){
         return modelMapper.map(projectRequest, ProjectRequestDTO.class);
     }
+    public ProjectRequest toEntity(ProjectRequestDTO projectRequestDTO){
+        return modelMapper.map(projectRequestDTO, ProjectRequest.class);
+    }
 }
+*/

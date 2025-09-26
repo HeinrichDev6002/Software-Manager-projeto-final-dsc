@@ -42,3 +42,4 @@ deste projeto é ajudar os desenvolvedores com o gerenciamento de seus projetos.
 * ProjectRequestDTO, DTO - Para impedir que o cliente force outro User aceitar projetos sem permissão.
 * Image, Model - Classe para imagens genéricas, podem ser UMLs, imagens de Design, MER, e etc.
 * UserImage, Model - Imagem do usuário para identificação visual do próprio.
+* Task, Model - Entidade responsável por representar e permitir a adição de tarefas nos projetos.
