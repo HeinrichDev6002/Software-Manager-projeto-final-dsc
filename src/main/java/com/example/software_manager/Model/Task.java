@@ -1,17 +1,12 @@
 package com.example.software_manager.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.List;
 
 @Entity
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long taskID;
+    Long taskId;
     @Column
     String title;
     @Column
@@ -19,11 +14,11 @@ public class Task {
     @Column
     String commentary; //Extra info
     @ManyToOne
-    @JoinColumn(name = "task_id")
+    @JoinColumn(name = "team_id")
     Team team;
 
     public Task(Long taskID, String title, String task, String commentary, Team team) {
-        this.taskID = taskID;
+        this.taskId = taskID;
         this.title = title;
         this.task = task;
         this.commentary = commentary;
@@ -32,11 +27,11 @@ public class Task {
     public Task(){}
 
     public Long getTaskID() {
-        return taskID;
+        return taskId;
     }
 
     public void setTaskID(Long taskID) {
-        this.taskID = taskID;
+        this.taskId = taskID;
     }
 
     public String getTitle() {

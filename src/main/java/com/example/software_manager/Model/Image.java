@@ -6,21 +6,21 @@ import jakarta.persistence.*;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    String imageId;
+    Long imageId;
     @Column
     String url;
 
-    public Image(String imageId, String url) {
+    public Image(Long imageId, String url) {
         this.imageId = imageId;
         this.url = url;
     }
     public Image(){}
 
-    public String getImageId() {
+    public Long getImageId() {
         return imageId;
     }
 
-    public void setImageId(String imageId) {
+    public void setImageId(Long imageId) {
         this.imageId = imageId;
     }
 
