@@ -7,9 +7,6 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Setter
-@Getter
-@AllArgsConstructor
 @Entity
 public class Task {
     @Id
@@ -24,4 +21,53 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "task_id")
     Team team;
+
+    public Task(Long taskID, String title, String task, String commentary, Team team) {
+        this.taskID = taskID;
+        this.title = title;
+        this.task = task;
+        this.commentary = commentary;
+        this.team = team;
+    }
+    public Task(){}
+
+    public Long getTaskID() {
+        return taskID;
+    }
+
+    public void setTaskID(Long taskID) {
+        this.taskID = taskID;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTask() {
+        return task;
+    }
+
+    public void setTask(String task) {
+        this.task = task;
+    }
+
+    public String getCommentary() {
+        return commentary;
+    }
+
+    public void setCommentary(String commentary) {
+        this.commentary = commentary;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 }

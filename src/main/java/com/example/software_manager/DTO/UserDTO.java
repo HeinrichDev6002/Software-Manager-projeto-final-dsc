@@ -14,6 +14,7 @@ import org.modelmapper.ModelMapper;
 public class UserDTO {
     String userName;
     String userEmail;
+    String password;
     Long id;
     UserMapper mapper;
 
