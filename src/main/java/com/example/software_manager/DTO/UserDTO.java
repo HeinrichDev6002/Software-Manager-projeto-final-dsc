@@ -1,5 +1,6 @@
 package com.example.software_manager.DTO;
 
+import com.example.software_manager.Model.Image;
 import com.example.software_manager.Model.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,30 +13,19 @@ import org.modelmapper.ModelMapper;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
-    String userName;
-    String userEmail;
-    String password;
-    Long id;
-    UserMapper mapper;
+    private Long userId;
+    private String userName;
+    private String userEmail;
+    private Image image;
+    private String password;
 
-    public User toEntity(UserDTO user){
-        return mapper.toEntity(user);
-    }
-    public UserDTO toDTO(User user){
-        return mapper.toDto(user);
-    }
-
-    private static class UserMapper{
-        private final ModelMapper modelMapper;
-
-        public UserMapper(ModelMapper modelMapper){
-            this.modelMapper = modelMapper;
-        }
-        public UserDTO toDto(User user){
-            return modelMapper.map(user, UserDTO.class);
-        }
-        public User toEntity(UserDTO userDTO){
-            return modelMapper.map(userDTO, User.class);
-        }
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "userEmail='" + userEmail + '\'' +
+                ", image=" + image +
+                ", userName='" + userName + '\'' +
+                ", userId=" + userId +
+                '}';
     }
 }
