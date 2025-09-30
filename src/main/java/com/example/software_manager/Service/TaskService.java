@@ -4,13 +4,16 @@ import com.example.software_manager.Model.Task;
 import com.example.software_manager.Model.Team;
 import com.example.software_manager.Repository.TaskRepository;
 import com.example.software_manager.Repository.TeamRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
+@Validated
 public class TaskService {
     private final TaskRepository taskRepository;
     private final TeamRepository teamRepository;
@@ -25,7 +28,7 @@ public class TaskService {
     public Task findById(Long id){
         return taskRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Task " + id + " não encontrada"));
     }
-    public Task createTask(Long teamId, Task task){
+    public Task createTask(Long teamId, @Valid Task task){
         Optional<Team> teamOptional = teamRepository.findById(teamId);
         if(teamOptional.isPresent()){
             task.setTeam(teamOptional.get());
@@ -33,7 +36,7 @@ public class TaskService {
         }
         return null;
     }
-    public Task updateTask(Long id, Task updates){
+    public Task updateTask(Long id, @Valid Task updates){
         Optional<Task> taskOptional = taskRepository.findById(id);
         if(taskOptional.isPresent()){
             Task task = taskOptional.get();

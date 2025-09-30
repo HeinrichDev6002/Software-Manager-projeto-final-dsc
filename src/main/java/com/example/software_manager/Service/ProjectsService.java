@@ -5,13 +5,16 @@ import com.example.software_manager.Model.User;
 import com.example.software_manager.Repository.ProjectsRepository;
 import com.example.software_manager.Repository.TeamRepository;
 import com.example.software_manager.Repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
+@Validated
 public class ProjectsService {
    private final ProjectsRepository projectsRepository;
    private final UserRepository userRepository;
@@ -28,7 +31,7 @@ public class ProjectsService {
    public Projects findById(Long id){
        return projectsRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Project " + id + " não encontrada"));
    }
-   public Projects createProject(Projects projects, Long userId){
+   public Projects createProject(@Valid Projects projects, Long userId){
        Optional<User> userOptional = userRepository.findById(userId);
        if(userOptional.isPresent()){
            projects.setOwner(userOptional.get());
@@ -36,7 +39,7 @@ public class ProjectsService {
        }
        return null;
    }
-   public Projects updateProject(Long id, Projects updates){
+   public Projects updateProject(Long id, @Valid Projects updates){
        Optional<Projects> projectsOptional = projectsRepository.findById(id);
        if(projectsOptional.isPresent()){
            Projects projects = projectsOptional.get();

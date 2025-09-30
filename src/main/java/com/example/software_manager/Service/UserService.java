@@ -8,13 +8,16 @@ import com.example.software_manager.Repository.ImageRepository;
 import com.example.software_manager.Repository.ProjectsRepository;
 import com.example.software_manager.Repository.TeamRepository;
 import com.example.software_manager.Repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
+@Validated
 public class UserService {
     private final UserRepository userRepository;
     private final ImageRepository imageRepository;
@@ -30,7 +33,7 @@ public class UserService {
     public List<User> listUsers(){
         return userRepository.findAll();
     }
-    public User create(User user){
+    public User create(@Valid User user){
         Image image = new Image();
         image.setUrl("www.example/image.png");
         imageRepository.save(image);
@@ -40,7 +43,7 @@ public class UserService {
     public User findById(Long id){
         return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Não encontrado"));
     }
-    public User updateUser(Long id, User update){
+    public User updateUser(Long id, @Valid User update){
         Optional<User> userOptional = userRepository.findById(id);
         if(userOptional.isPresent()){
             User user = userOptional.get();
