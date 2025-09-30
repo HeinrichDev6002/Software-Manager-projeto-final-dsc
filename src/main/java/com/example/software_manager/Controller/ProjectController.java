@@ -3,14 +3,17 @@ package com.example.software_manager.Controller;
 import com.example.software_manager.DTO.ProjectDTO;
 import com.example.software_manager.Model.Projects;
 import com.example.software_manager.Service.ProjectsService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/v2")
+@Validated
 public class ProjectController {
     private final ProjectsService projectsService;
     private final ModelMapper modelMapper;
@@ -30,14 +33,14 @@ public class ProjectController {
         return modelMapper.map(projects, ProjectDTO.class);
     }
     @PostMapping(path = "/users/{userId}/projects")
-    public ProjectDTO createProject(@PathVariable Long userId, @RequestBody ProjectDTO projectDTO){
+    public ProjectDTO createProject(@PathVariable Long userId, @Valid @RequestBody ProjectDTO projectDTO){
         Projects projects = modelMapper.map(projectDTO, Projects.class);
         Projects projectCreated = projectsService.createProject(projects, userId);
         return modelMapper.map(projectCreated, ProjectDTO.class);
     }
     @PutMapping(path = "/projects/{projectId}")
-    public ProjectDTO updateProject(@PathVariable Long projectId, @RequestBody ProjectDTO projectDTO){
-        Projects projects = projectsService.findById(projectId);
+    public ProjectDTO updateProject(@PathVariable Long projectId, @Valid @RequestBody ProjectDTO projectDTO){
+        Projects projects = modelMapper.map(projectDTO, Projects.class);
         Projects projectUpdated = projectsService.updateProject(projectId, projects);
         return modelMapper.map(projectUpdated, ProjectDTO.class);
     }

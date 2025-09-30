@@ -3,17 +3,20 @@ package com.example.software_manager.Controller;
 import com.example.software_manager.DTO.TeamDTO;
 import com.example.software_manager.Model.Team;
 import com.example.software_manager.Service.TeamService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/v2")
+@Validated
 public class TeamController {
     private final TeamService teamService;
-    private  final ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     public TeamController(TeamService teamService, ModelMapper modelMapper){
         this.teamService = teamService;
@@ -32,13 +35,13 @@ public class TeamController {
         return modelMapper.map(team, TeamDTO.class);
     }
     @PostMapping(path = "/project/{projectId}/teams")
-    public TeamDTO createTeam(@PathVariable Long projectId, @RequestBody TeamDTO teamDTO){
+    public TeamDTO createTeam(@PathVariable Long projectId, @Valid @RequestBody TeamDTO teamDTO){
         Team team = modelMapper.map(teamDTO, Team.class);
         Team teamCreated = teamService.createTeam(projectId, team);
         return modelMapper.map(teamCreated, TeamDTO.class);
     }
     @PutMapping(path = "/teams/{teamId}")
-    public TeamDTO updateTeam(@PathVariable Long teamId, @RequestBody TeamDTO teamDTO){
+    public TeamDTO updateTeam(@PathVariable Long teamId, @Valid @RequestBody TeamDTO teamDTO){
         Team team = modelMapper.map(teamDTO, Team.class);
         Team teamUpdated = teamService.updateTeam(teamId, team);
         return modelMapper.map(teamUpdated, TeamDTO.class);
