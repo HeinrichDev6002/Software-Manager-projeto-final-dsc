@@ -31,10 +31,10 @@ public class TeamController {
         Team team = teamService.findById(teamId);
         return modelMapper.map(team, TeamDTO.class);
     }
-    @PostMapping(path = "/project/{teamId}/teams")
-    public TeamDTO createTeam(@PathVariable Long teamId, @RequestBody TeamDTO teamDTO){
+    @PostMapping(path = "/project/{projectId}/teams")
+    public TeamDTO createTeam(@PathVariable Long projectId, @RequestBody TeamDTO teamDTO){
         Team team = modelMapper.map(teamDTO, Team.class);
-        Team teamCreated = teamService.createTeam(teamId, team);
+        Team teamCreated = teamService.createTeam(projectId, team);
         return modelMapper.map(teamCreated, TeamDTO.class);
     }
     @PutMapping(path = "/teams/{teamId}")
