@@ -4,11 +4,13 @@ import com.example.software_manager.Model.Task;
 import com.example.software_manager.Model.Team;
 import com.example.software_manager.Repository.TaskRepository;
 import com.example.software_manager.Repository.TeamRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@Service
 public class TaskService {
     private final TaskRepository taskRepository;
     private final TeamRepository teamRepository;

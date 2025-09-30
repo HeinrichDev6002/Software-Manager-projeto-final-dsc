@@ -26,7 +26,7 @@ public class TeamController {
         return teams.stream().map(team ->
             modelMapper.map(team, TeamDTO.class)).toList();
     }
-    @GetMapping(path =  "/teams/{teamId")
+    @GetMapping(path =  "/teams/{teamId}")
     public TeamDTO getTeams(@PathVariable Long teamId){
         Team team = teamService.findById(teamId);
         return modelMapper.map(team, TeamDTO.class);

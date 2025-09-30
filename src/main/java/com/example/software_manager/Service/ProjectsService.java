@@ -5,11 +5,13 @@ import com.example.software_manager.Model.User;
 import com.example.software_manager.Repository.ProjectsRepository;
 import com.example.software_manager.Repository.TeamRepository;
 import com.example.software_manager.Repository.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@Service
 public class ProjectsService {
    private final ProjectsRepository projectsRepository;
    private final UserRepository userRepository;
