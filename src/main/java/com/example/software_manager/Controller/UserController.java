@@ -39,6 +39,15 @@ public class UserController {
         User userSaved = userService.create(u);
         return modelMapper.map(userSaved, UserDTO.class);
     }
+    @PatchMapping(path = "/v2/teams/{teamId}/users/{userId}")
+    public UserDTO team(@PathVariable Long teamId, @PathVariable Long userId){
+        User user = userService.team(teamId, userId);
+        return modelMapper.map(user, UserDTO.class);
+    }
+    @DeleteMapping(path = "/v2/teams/{teamId}/users/{userId}")
+    public void unteam(@PathVariable Long teamId, @PathVariable Long userId){
+        userService.unteam(teamId, userId);
+    }
     @PutMapping(path = "/v2/users/{userId}")
     public UserDTO updateUser(@PathVariable Long userId, @Valid @RequestBody UserDTO userDTO){
         User user = modelMapper.map(userDTO, User.class);
